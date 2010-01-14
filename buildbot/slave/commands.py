@@ -1873,7 +1873,10 @@ class CVS(SourceBase):
             command += ['-r', self.branch]
         if self.revision:
             command += ['-D', self.revision]
-        command += [self.cvsmodule]
+        if type(self.cvsmodule) is list:
+            command += self.cvsmodule
+        else:
+            command += [self.cvsmodule]
 
         c = ShellCommand(self.builder, command, d,
                          sendRC=False, timeout=self.timeout,

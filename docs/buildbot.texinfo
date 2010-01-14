@@ -5185,7 +5185,9 @@ value you would use to get a copy of the Buildbot source code is
 @item cvsmodule
 (required): specify the cvs @code{module}, which is generally a
 subdirectory of the CVSROOT. The cvsmodule for the Buildbot source
-code is @code{buildbot}.
+code is @code{buildbot}. In addition to the normal case of a string
+argument, it also accepts a list of strings if multiple modules are
+to be processed.
 
 @item branch
 a string which will be used in a @code{-r} argument. This is most
@@ -5198,6 +5200,12 @@ a list of flags to be put before the verb in the CVS command.
 if set, the number of seconds to put between the timestamp of the last
 known Change and the value used for the @code{-D} option. Defaults to
 half of the parent Build's treeStableTimer.
+
+@item checkoutOptions
+a list of flags to be put after the verb in the CVS command. Most
+commonly @code{['-N']} would be specified to generate the full
+module directory tree which is normally elided by CVS. Do not include
+the @code{-d} option in this list as it is already used by buildbot.
 
 @end table
 
